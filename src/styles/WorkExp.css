@@ -5,6 +5,14 @@
     margin: 0 2rem;
 }
 
+.job-section-title {
+    border-bottom: 1px solid black;
+}
+
+.job-section-title h4 {
+    margin-bottom: .2rem;
+}
+
 .jobs {
     display: flex;
     flex-flow: row nowrap;

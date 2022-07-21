@@ -5,6 +5,14 @@
     margin:0 2rem;
 }
 
+.school-section-title{
+    border-bottom: 1px solid black;
+}
+
+.school-section-title h4{
+    margin-bottom:.2rem;
+}
+
 .schools{
     display:flex;
     flex-flow: row nowrap;

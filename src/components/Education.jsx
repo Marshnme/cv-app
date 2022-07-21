@@ -9,7 +9,7 @@ class Education extends React.Component{
     render() {
         return (
             <div className='education-container'>
-                <div className="section-title">
+                <div className="school-section-title">
                     <h4>Education</h4>
                 </div>
                 <div className="schools">
