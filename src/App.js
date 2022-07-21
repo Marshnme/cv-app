@@ -1,4 +1,7 @@
 import React from 'react';
+import GeneralInfo from './components/GeneralInfo';
+import Education from './components/Education';
+import WorkExp from './components/WorkExp';
 import './App.css';
 
 class App extends React.Component {
@@ -13,8 +16,17 @@ class App extends React.Component {
 				<header className="header">
 					<h1>CV Builder</h1>
 				</header>
-				<main className="main"></main>
-				<footer className="footer"></footer>
+				<main className="main">
+					<GeneralInfo></GeneralInfo>
+					<Education></Education>
+					<WorkExp></WorkExp>
+				</main>
+				<footer className="footer">
+					<p>
+						Created by Joshua Holtsclaw for The Odin Project
+						Curriculum
+					</p>
+				</footer>
 			</div>
 		);
 	}

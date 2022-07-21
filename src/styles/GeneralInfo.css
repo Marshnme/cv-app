@@ -1,0 +1,24 @@
+.general-info-container{
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    margin:0 2rem;
+}
+
+.name{
+    font-size: 1.5rem;
+}
+
+.contact-info{
+    font-size: .9rem;
+    margin-top:1rem
+}
+
+.contact-info p{
+    padding: 0rem;
+    margin: 0rem;
+}
+
+.contact-info p:nth-child(2){
+    padding:.5rem 0;
+}
