@@ -9,7 +9,7 @@ class WorkExp extends React.Component{
     render() {
         return (
             <div className='work-exp-container'>
-                <h2>Work Exp</h2>
+                <h4>Work Exp</h4>
             </div>
         )
     }

@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   height: 100vh;
   display:grid;
   grid-template-rows: .1fr 1fr .1fr;
@@ -13,6 +12,7 @@
 
 .header {
   border: 1px solid black;
+  text-align: center;
   grid-area: header;
 }
 
@@ -25,5 +25,6 @@
 
 .footer {
   border: 1px solid black;
+  text-align: center;
   grid-area: footer;
 }

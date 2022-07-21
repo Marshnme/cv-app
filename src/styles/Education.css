@@ -1,0 +1,12 @@
+.education-container{
+    display:flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    margin:0 2rem;
+}
+
+.schools{
+    display:flex;
+    flex-flow: row nowrap;
+    margin-left:2rem;
+}
