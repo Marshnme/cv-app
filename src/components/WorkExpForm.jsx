@@ -8,8 +8,8 @@ class WorkExpForm extends React.Component{
 
     render() {
         return (
-            <div>
-                <form>
+            <div className='job-form-container'>
+                <form className='job-form'>
                     <label htmlFor="company">company</label>
                     <input type="text" id='company' name="company" />
                     <label htmlFor="role">role</label>

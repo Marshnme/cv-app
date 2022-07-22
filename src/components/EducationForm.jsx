@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../styles/Education.css'
 
 class EducationForm extends React.Component{
     constructor(props) {
@@ -8,8 +8,8 @@ class EducationForm extends React.Component{
 
     render() {
         return (
-            <div>
-                <form>
+            <div className='education-form-container'>
+                <form className='education-form'>
                     <label htmlFor="school">School</label>
                     <input type="text" id='school' name="school" />
                     <label htmlFor="major">major</label>

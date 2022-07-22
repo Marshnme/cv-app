@@ -20,3 +20,27 @@
     flex-flow: row nowrap;
     margin-left:2rem;
 }
+
+
+.education-form-container{
+    position: absolute;
+    border:1px solid black;
+    background-color: grey;
+    border-radius: 10px;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.education-form{
+    display:flex;
+    flex-flow: column nowrap;
+    padding: 1.5rem;
+    
+}
+
+.education-form > input {
+    margin-top:.2rem;
+    margin-bottom: 1rem;
+}

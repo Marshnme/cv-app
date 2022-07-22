@@ -1,18 +1,33 @@
 import React from 'react';
+import EducationForm from './EducationForm';
 import '../styles/Education.css'
 
 class Education extends React.Component{
     constructor(props) {
         super(props)
+
+        this.state = { educationFormToggle: false, jobFormToggle:false,}
+        
+        this.toggleEducationForm = this.toggleEducationForm.bind(this);
+        this.toggleJobForm = this.toggleEducationForm.bind(this);
     }
+
+    toggleEducationForm() {
+       this.state.educationFormToggle ? this.setState({educationFormToggle:false}) : this.setState({educationFormToggle:true})
+    }
+    
 
     render() {
         return (
             <div className='education-container'>
                 <div className="school-section-title">
                     <h4>Education</h4>
-                    <p>+</p>
+                    <p onClick={this.toggleEducationForm}>+</p>
+                    {this.state.educationFormToggle ? <EducationForm></EducationForm> : null}
                 </div>
+                
+                    
+                
                 <div className="schools">
                     <div className="school-info">
                         <p>Super cool School</p>
