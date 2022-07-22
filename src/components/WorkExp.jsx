@@ -11,6 +11,7 @@ class WorkExp extends React.Component{
             <div className='work-exp-container'>
                 <div className="job-section-title">
                     <h4>Work Experience</h4>
+                    <p>+</p>
                 </div>
                 <div className="jobs">
                     <div className="job-info">

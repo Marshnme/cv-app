@@ -11,6 +11,7 @@ class Education extends React.Component{
             <div className='education-container'>
                 <div className="school-section-title">
                     <h4>Education</h4>
+                    <p>+</p>
                 </div>
                 <div className="schools">
                     <div className="school-info">

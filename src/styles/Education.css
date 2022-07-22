@@ -7,10 +7,12 @@
 
 .school-section-title{
     border-bottom: 1px solid black;
+    display:flex;
 }
 
 .school-section-title h4{
     margin-bottom:.2rem;
+    margin-right: .5rem;
 }
 
 .schools{

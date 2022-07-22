@@ -15,7 +15,7 @@ class GeneralInfo extends React.Component{
                 <div className="contact-info">
                     <p>Email@email.com</p>
                     <p>111-222-3333</p>
-                    <p>LinkedinLinkhere</p>
+                    <p>WebsiteLinkHere</p>
                 </div>
             </div>
         )
