@@ -6,13 +6,21 @@
 }
 
 .job-section-title {
-    border-bottom: 1px solid black;
     display:flex;
+    align-items: center;
 }
 
 .job-section-title h4 {
-    margin-bottom: .2rem;
+    margin:0;
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+    margin-top:1rem;
     margin-right: .5rem;
+}
+
+.job-section-title p {
+    margin: 0;
+    cursor: pointer;
 }
 
 .jobs {

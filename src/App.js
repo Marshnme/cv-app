@@ -15,6 +15,14 @@ class App extends React.Component {
 			<div className="App">
 				<header className="header">
 					<h1>CV Builder</h1>
+
+					<div className="toggle-edit-container">
+						<p>Edit?</p>
+						<label class="switch">
+							<input type="checkbox"></input>
+							<span class="slider round"></span>
+						</label>
+					</div>
 				</header>
 				<main className="main">
 					<GeneralInfo></GeneralInfo>
