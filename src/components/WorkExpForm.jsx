@@ -18,6 +18,7 @@ class WorkExpForm extends React.Component{
                     <input type="text" id='duties' name="duties" />
                     <label htmlFor="date">date</label>
                     <input type="text" id='date' name="date" />
+                    <button type='submit'>Add Job</button>
                 </form>
             </div>
         )

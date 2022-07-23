@@ -16,6 +16,7 @@ class EducationForm extends React.Component{
                     <input type="text" id='major' name="major" />
                     <label htmlFor="date">date</label>
                     <input type="text" id='date' name="date" />
+                    <button type='submit'>Add School</button>
                 </form>
             </div>
         )
