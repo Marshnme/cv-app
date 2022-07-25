@@ -29,6 +29,12 @@
     margin-left:2rem;
 }
 
+.school{
+    display:flex;
+    flex-flow: column nowrap;
+    padding:0 1.5rem;
+}
+
 
 .education-form-container{
     position: absolute;

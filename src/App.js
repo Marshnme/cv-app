@@ -2,7 +2,6 @@ import React from 'react';
 import GeneralInfo from './components/GeneralInfo';
 import Education from './components/Education';
 import WorkExp from './components/WorkExp';
-import uniqid from 'uniqid';
 import './App.css';
 
 class App extends React.Component {
@@ -25,6 +24,7 @@ class App extends React.Component {
 		this.handleContactSubmit = this.handleContactSubmit.bind(this);
 
 		this.addSchool = this.addSchool.bind(this);
+		this.deleteSchool = this.deleteSchool.bind(this);
 	}
 
 	handleEditToggle() {
@@ -65,6 +65,15 @@ class App extends React.Component {
 		formToggle();
 	}
 
+	deleteSchool(id, e) {
+		let updatedState = this.state.education.filter((school) => {
+			if (school.id !== id) {
+				return school;
+			}
+		});
+		this.setState({ education: updatedState });
+	}
+
 	render() {
 		let { editToggle, generalInfo, education, workExp } = this.state;
 
@@ -94,6 +103,7 @@ class App extends React.Component {
 					<Education
 						edit={editToggle}
 						addSchool={this.addSchool}
+						deleteSchool={this.deleteSchool}
 						schools={education}
 					></Education>
 					<WorkExp edit={editToggle} jobs={workExp}></WorkExp>

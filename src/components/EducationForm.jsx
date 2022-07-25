@@ -1,4 +1,5 @@
 import React from 'react'
+import uniqid from 'uniqid';
 import '../styles/Education.css'
 
 class EducationForm extends React.Component{
@@ -8,7 +9,8 @@ class EducationForm extends React.Component{
         this.state = {
             schoolField: '',
             majorField: '',
-            dateField:''
+            dateField: '',
+            id:uniqid()
         }
         this.handleChange = this.handleChange.bind(this)
     }

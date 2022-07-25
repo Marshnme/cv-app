@@ -1,5 +1,6 @@
 import React from 'react';
 import EducationForm from './EducationForm';
+import EditIcon from '@mui/icons-material/Edit';
 import '../styles/Education.css'
 
 class Education extends React.Component{
@@ -9,6 +10,7 @@ class Education extends React.Component{
         this.state = { educationFormToggle: false}
         
         this.toggleEducationForm = this.toggleEducationForm.bind(this);
+
     }
 
     toggleEducationForm() {
@@ -17,8 +19,8 @@ class Education extends React.Component{
     
 
     render() {
-        let {formToggle} = this.state
-        let {edit,addSchool,schools} = this.props
+        let {educationFormToggle} = this.state
+        let {edit,addSchool,deleteSchool,schools} = this.props
         return (
             <div className='education-container'>
                 <div className="school-section-title">
@@ -28,17 +30,17 @@ class Education extends React.Component{
                     {this.state.educationFormToggle ? <EducationForm addSchool={addSchool} formToggle={    this.toggleEducationForm}></EducationForm> : null}
                 </div>
                 
-                    {console.log(schools)}
-                    <div className="schools">
+                {console.log(schools)}
+                <div className="schools">
                     {schools.map((school) => {
-                    return(    
-                    
-                        <div className="school-info">
-                            <p>{school.schoolField}</p>
-                            <p>{school.majorField}</p>
-                            <p>{school.dateField}</p>
-                        </div>
-                    )
+                        return (edit ?
+                            <div className='school'>
+                                <p>{school.schoolField}<EditIcon></EditIcon> <span onClick={deleteSchool.bind(this,school.id)}>X</span></p><p>{school.majorField}</p><p>{school.dateField}</p> 
+                            </div>
+                             :
+                            <div className='school'><p>{school.schoolField}</p><p>{school.majorField}</p><p>{school.dateField}</p></div>
+                            
+                       )
                     })}
                 </div>
             </div>
