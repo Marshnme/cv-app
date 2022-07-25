@@ -1,4 +1,5 @@
 import React from 'react';
+import EditIcon from '@mui/icons-material/Edit';
 import '../styles/GeneralInfo.css'
 
 class GeneralInfo extends React.Component{
@@ -26,7 +27,7 @@ class GeneralInfo extends React.Component{
     }
     handleNameChange(e) {
         e.preventDefault()
-        console.log(e)
+        
         this.setState({nameField:e.target.value})
     }
     
@@ -36,7 +37,7 @@ class GeneralInfo extends React.Component{
 
     handleContactChange(e) {
         e.preventDefault()
-        console.log(e)
+        
         if (e.target.id === 'email') {
             this.setState({emailField:e.target.value})
         } else if (e.target.id === 'phone') {
@@ -52,13 +53,12 @@ class GeneralInfo extends React.Component{
     render() {
         let { edit, info ,handleNameSubmit,handleContactSubmit} = this.props
         let {editName, editContact, nameField,emailField,phoneField,websiteField} = this.state
-        console.log(edit, info,handleNameSubmit)
-        console.log(this.state.editName)
         return (
             <div className='general-info-container'>
                 <div className="name">
                     <form  onSubmit={handleNameSubmit.bind(this,nameField,this.handleNameEdit)}>
-                        {edit ? editName ? <><input type='text' onChange={this.handleNameChange} value={nameField}></input> <button type='submit'>Apply</button></> : <h3>{info.userName}<span onClick={this.handleNameEdit}>editme</span></h3> : <h3>{info.userName}</h3>}
+                        {edit ? editName ? <><input type='text' onChange={this.handleNameChange} value={nameField}></input> <button type='submit'>Apply</button></> : <h3>{info.userName}
+                            <EditIcon className='cursor-pointer' onClick={this.handleNameEdit}></EditIcon></h3> : <h3>{info.userName}</h3>}
                     </form>
                 </div>
                 <div className="contact-info">
@@ -74,7 +74,7 @@ class GeneralInfo extends React.Component{
                         :
                             
                         <>
-                            <p>{info.email}<span onClick={this.handleContactEdit}>editme</span></p>
+                            <p>{info.email}<EditIcon className='cursor-pointer' onClick={this.handleContactEdit}></EditIcon></p>
                             <p>{info.phone}</p>
                             <p>{info.website}</p>
                         </> :

@@ -31,6 +31,7 @@ class App extends React.Component {
 			: this.setState({ editToggle: true });
 	}
 
+	// GENERAL INFO FUNCTIONS
 	handleNameSubmit(nameField, handleEdit, e) {
 		e.preventDefault();
 		this.setState({
@@ -41,7 +42,6 @@ class App extends React.Component {
 
 	handleContactSubmit(newEmail, newPhone, newWebsite, contactEdit, e) {
 		e.preventDefault();
-		console.log(newEmail, newPhone, newWebsite);
 		this.setState({
 			generalInfo: {
 				...this.state.generalInfo,
@@ -52,10 +52,13 @@ class App extends React.Component {
 		});
 		contactEdit();
 	}
+	// END GENERAL INFO
+
+	// EDUCATION FUNCTIONS
 
 	render() {
 		let { editToggle, generalInfo, education, workExp } = this.state;
-		console.log(editToggle, generalInfo, education, workExp);
+
 		return (
 			<div className="App">
 				<header className="header">

@@ -22,3 +22,7 @@
 .contact-info p:nth-child(2){
     padding:.5rem 0;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}
