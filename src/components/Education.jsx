@@ -6,10 +6,9 @@ class Education extends React.Component{
     constructor(props) {
         super(props)
 
-        this.state = { educationFormToggle: false, jobFormToggle:false,}
+        this.state = { educationFormToggle: false}
         
         this.toggleEducationForm = this.toggleEducationForm.bind(this);
-        this.toggleJobForm = this.toggleEducationForm.bind(this);
     }
 
     toggleEducationForm() {
@@ -18,11 +17,13 @@ class Education extends React.Component{
     
 
     render() {
+        let {edit,school} = this.props
         return (
             <div className='education-container'>
                 <div className="school-section-title">
                     <h4>Education</h4>
-                    <p onClick={this.toggleEducationForm}>+</p>
+                    {edit ? <p onClick={this.toggleEducationForm}>+</p> : null}
+                    
                     {this.state.educationFormToggle ? <EducationForm></EducationForm> : null}
                 </div>
                 

@@ -16,11 +16,12 @@ class WorkExp extends React.Component{
     }
 
     render() {
+        let {edit, jobs} = this.props
         return (
             <div className='work-exp-container'>
                 <div className="job-section-title">
                     <h4>Work Experience</h4>
-                    <p onClick={this.toggleJobForm}>+</p>
+                    {edit ?  <p onClick={this.toggleJobForm}>+</p> : null}
                      {this.state.jobFormToggle ? <WorkExpForm></WorkExpForm> : null}
                 </div>
                 <div className="jobs">
