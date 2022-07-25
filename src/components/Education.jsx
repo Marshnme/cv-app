@@ -17,24 +17,29 @@ class Education extends React.Component{
     
 
     render() {
-        let {edit,school} = this.props
+        let {formToggle} = this.state
+        let {edit,addSchool,schools} = this.props
         return (
             <div className='education-container'>
                 <div className="school-section-title">
                     <h4>Education</h4>
                     {edit ? <p onClick={this.toggleEducationForm}>+</p> : null}
                     
-                    {this.state.educationFormToggle ? <EducationForm></EducationForm> : null}
+                    {this.state.educationFormToggle ? <EducationForm addSchool={addSchool} formToggle={    this.toggleEducationForm}></EducationForm> : null}
                 </div>
                 
+                    {console.log(schools)}
+                    <div className="schools">
+                    {schools.map((school) => {
+                    return(    
                     
-                
-                <div className="schools">
-                    <div className="school-info">
-                        <p>Super cool School</p>
-                        <p>Studied the arts of cool</p>
-                        <p>from 12/12/1222 - 12/12/1244</p>
-                    </div>
+                        <div className="school-info">
+                            <p>{school.schoolField}</p>
+                            <p>{school.majorField}</p>
+                            <p>{school.dateField}</p>
+                        </div>
+                    )
+                    })}
                 </div>
             </div>
         )

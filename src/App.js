@@ -23,6 +23,8 @@ class App extends React.Component {
 		this.handleEditToggle = this.handleEditToggle.bind(this);
 		this.handleNameSubmit = this.handleNameSubmit.bind(this);
 		this.handleContactSubmit = this.handleContactSubmit.bind(this);
+
+		this.addSchool = this.addSchool.bind(this);
 	}
 
 	handleEditToggle() {
@@ -56,6 +58,13 @@ class App extends React.Component {
 
 	// EDUCATION FUNCTIONS
 
+	addSchool(formToggle, newSchool, e) {
+		e.preventDefault();
+		this.setState({ education: [...this.state.education, newSchool] });
+		console.log(newSchool);
+		formToggle();
+	}
+
 	render() {
 		let { editToggle, generalInfo, education, workExp } = this.state;
 
@@ -82,7 +91,11 @@ class App extends React.Component {
 						handleNameSubmit={this.handleNameSubmit}
 						handleContactSubmit={this.handleContactSubmit}
 					></GeneralInfo>
-					<Education edit={editToggle} school={education}></Education>
+					<Education
+						edit={editToggle}
+						addSchool={this.addSchool}
+						schools={education}
+					></Education>
 					<WorkExp edit={editToggle} jobs={workExp}></WorkExp>
 				</main>
 				<footer className="footer">
