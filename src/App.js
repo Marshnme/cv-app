@@ -2,6 +2,7 @@ import React from 'react';
 import GeneralInfo from './components/GeneralInfo';
 import Education from './components/Education';
 import WorkExp from './components/WorkExp';
+import uniqid from 'uniqid';
 import './App.css';
 
 class App extends React.Component {
@@ -10,11 +11,18 @@ class App extends React.Component {
 
 		this.state = {
 			editToggle: false,
-			generalInfo: [],
+			generalInfo: {
+				userName: 'John Doe',
+				email: 'email@email.com',
+				phone: '111-111-1111',
+				website: 'your-website.com',
+			},
 			education: [],
 			workExp: [],
 		};
 		this.handleEditToggle = this.handleEditToggle.bind(this);
+		this.handleNameSubmit = this.handleNameSubmit.bind(this);
+		this.handleContactSubmit = this.handleContactSubmit.bind(this);
 	}
 
 	handleEditToggle() {
@@ -22,6 +30,29 @@ class App extends React.Component {
 			? this.setState({ editToggle: false })
 			: this.setState({ editToggle: true });
 	}
+
+	handleNameSubmit(nameField, handleEdit, e) {
+		e.preventDefault();
+		this.setState({
+			generalInfo: { ...this.state.generalInfo, userName: nameField },
+		});
+		handleEdit();
+	}
+
+	handleContactSubmit(newEmail, newPhone, newWebsite, contactEdit, e) {
+		e.preventDefault();
+		console.log(newEmail, newPhone, newWebsite);
+		this.setState({
+			generalInfo: {
+				...this.state.generalInfo,
+				email: newEmail,
+				phone: newPhone,
+				website: newWebsite,
+			},
+		});
+		contactEdit();
+	}
+
 	render() {
 		let { editToggle, generalInfo, education, workExp } = this.state;
 		console.log(editToggle, generalInfo, education, workExp);
@@ -45,6 +76,8 @@ class App extends React.Component {
 					<GeneralInfo
 						edit={editToggle}
 						info={generalInfo}
+						handleNameSubmit={this.handleNameSubmit}
+						handleContactSubmit={this.handleContactSubmit}
 					></GeneralInfo>
 					<Education edit={editToggle} school={education}></Education>
 					<WorkExp edit={editToggle} jobs={workExp}></WorkExp>
