@@ -7,10 +7,12 @@ class GeneralInfo extends React.Component{
     }
 
     render() {
+        let { edit, info } = this.props
+        console.log(edit,info)
         return (
             <div className='general-info-container'>
                 <div className="name">
-                    <h3>Joshua Holtsclaw</h3>
+                    {edit ? <h3>Joshua Holtsclaw<span>editme</span></h3> : <h3>Joshua Holtsclaw</h3>}
                 </div>
                 <div className="contact-info">
                     <p>Email@email.com</p>

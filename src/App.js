@@ -14,8 +14,17 @@ class App extends React.Component {
 			education: [],
 			workExp: [],
 		};
+		this.handleEditToggle = this.handleEditToggle.bind(this);
+	}
+
+	handleEditToggle() {
+		this.state.editToggle
+			? this.setState({ editToggle: false })
+			: this.setState({ editToggle: true });
 	}
 	render() {
+		let { editToggle, generalInfo, education, workExp } = this.state;
+		console.log(editToggle, generalInfo, education, workExp);
 		return (
 			<div className="App">
 				<header className="header">
@@ -23,16 +32,22 @@ class App extends React.Component {
 
 					<div className="toggle-edit-container">
 						<p>Edit?</p>
-						<label class="switch">
-							<input type="checkbox"></input>
-							<span class="slider round"></span>
+						<label className="switch">
+							<input
+								onClick={this.handleEditToggle}
+								type="checkbox"
+							></input>
+							<span className="slider round"></span>
 						</label>
 					</div>
 				</header>
 				<main className="main">
-					<GeneralInfo></GeneralInfo>
-					<Education></Education>
-					<WorkExp></WorkExp>
+					<GeneralInfo
+						edit={editToggle}
+						info={generalInfo}
+					></GeneralInfo>
+					<Education edit={editToggle} school={education}></Education>
+					<WorkExp edit={editToggle} jobs={workExp}></WorkExp>
 				</main>
 				<footer className="footer">
 					<p>
