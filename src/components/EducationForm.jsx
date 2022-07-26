@@ -10,6 +10,7 @@ class EducationForm extends React.Component{
             schoolField: '',
             majorField: '',
             dateField: '',
+            editing:false,
             id:uniqid()
         }
         this.handleChange = this.handleChange.bind(this)
