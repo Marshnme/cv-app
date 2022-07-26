@@ -41,6 +41,7 @@ class WorkExp extends React.Component{
     }
 
     render() {
+        let {companyField,roleField,dutiesField,dateField} = this.state
         let {edit,addJob,handleJobEdit,handleJobEditSubmit,deleteJob, jobs} = this.props
         return (
             <div className='work-exp-container'>
@@ -57,15 +58,15 @@ class WorkExp extends React.Component{
                         return (
                             edit ?
                                 job.editing ? 
-                                    <form onSubmit={handleJobEditSubmit}>
-                                        <input></input>
-                                        <input></input>
-                                        <input></input>
-                                        <input></input>
+                                    <form onSubmit={handleJobEditSubmit.bind(this,job.id,this.state)}>
+                                        <input id='company' value={companyField} onChange={this.handleJobOnChange}></input>
+                                        <input id='role' value={roleField} onChange={this.handleJobOnChange}></input>
+                                        <input id='duties' value={dutiesField} onChange={this.handleJobOnChange}></input>
+                                        <input id='date' value={dateField} onChange={this.handleJobOnChange}></input>
                                         <button>Apply</button>
                                     </form>
                                     :
-                                <div className='job'>
+                                <div className='job' id={job.id}>
                                     <p>{job.companyField}
                                         <EditIcon className='cursor-pointer' onClick={handleJobEdit.bind(this, job, this.currentJobFieldState.bind(job))}></EditIcon>
                                         <span className='cursor-pointer' onClick={deleteJob.bind(this, job.id)}>X</span>
@@ -75,7 +76,7 @@ class WorkExp extends React.Component{
                                     <p>{job.dateField}</p>
                                 </div>
                                 :
-                                <div className='job'>
+                                <div className='job' id={job.id}>
                                     <p>{job.companyField}</p>
                                     <p>{job.roleField}</p>
                                     <p>{job.dutiesField}</p>

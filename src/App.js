@@ -165,9 +165,10 @@ class App extends React.Component {
 		e.preventDefault();
 		let newState = this.state.workExp.map((job) => {
 			if (job.id === jobID) {
-				job.jobField = changes.jobNameField;
-				job.majorField = changes.jobMajorField;
-				job.dateField = changes.jobDateField;
+				job.companyField = changes.companyField;
+				job.roleField = changes.roleField;
+				job.dutiesField = changes.dutiesField;
+				job.dateField = changes.dateField;
 				job.editing = false;
 				return job;
 			} else {
