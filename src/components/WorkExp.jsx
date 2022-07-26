@@ -16,21 +16,21 @@ class WorkExp extends React.Component{
     }
 
     render() {
-        let {edit, jobs} = this.props
+        let {edit,addJob,handleJobEdit,handleJobEditSubmit,deleteJob, jobs} = this.props
         return (
             <div className='work-exp-container'>
                 <div className="job-section-title">
                     <h4>Work Experience</h4>
                     {edit ?  <p onClick={this.toggleJobForm}>+</p> : null}
-                     {this.state.jobFormToggle ? <WorkExpForm></WorkExpForm> : null}
+                     {this.state.jobFormToggle ? <WorkExpForm addJob={addJob} toggleForm={this.toggleJobForm}></WorkExpForm> : null}
                 </div>
+
+
+
                 <div className="jobs">
-                    <div className="job-info">
-                        <p>Decent company name</p>
-                        <p>manager of cool</p>
-                        <p>Keep cool up,fired uncool people, kept ice stocked</p>
-                        <p>from 12/12/1222 - 12/12/1244</p>
-                    </div>
+                    {jobs.map((job) => {
+                        return(<p>{ job.companyField}</p>)
+                    })}
                 </div>
             </div>
         )

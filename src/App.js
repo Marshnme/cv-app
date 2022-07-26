@@ -27,6 +27,11 @@ class App extends React.Component {
 		this.handleSchoolEdit = this.handleSchoolEdit.bind(this);
 		this.handleSchoolEditSubmit = this.handleSchoolEditSubmit.bind(this);
 		this.deleteSchool = this.deleteSchool.bind(this);
+
+		this.addJob = this.addJob.bind(this);
+		this.handleJobEdit = this.handleJobEdit.bind(this);
+		this.handleJobEditSubmit = this.handleJobEditSubmit.bind(this);
+		this.deleteJob = this.deleteJob.bind(this);
 	}
 
 	handleEditToggle() {
@@ -119,6 +124,68 @@ class App extends React.Component {
 	}
 	// END SCHOOL FUNCTIONS
 
+	// JOB FUNCTIONS
+
+	addJob(formToggle, newJob, e) {
+		console.log('NEWWW', newJob);
+		e.preventDefault();
+		this.setState({
+			workExp: [...this.state.workExp, newJob],
+		});
+		formToggle();
+	}
+
+	handleJobEdit(currentJob, fieldState, e) {
+		let newState = this.state.education.map((job) => {
+			if (job.id === currentJob.id) {
+				if (job.editing === false) {
+					job.editing = true;
+				} else {
+					job.editing = false;
+				}
+				return job;
+			} else {
+				return job;
+			}
+		});
+
+		fieldState(
+			currentJob.jobField,
+			currentJob.majorField,
+			currentJob.dateField
+		);
+
+		this.setState({ workExp: newState });
+		console.log(this.state);
+	}
+
+	handleJobEditSubmit(jobID, changes, e) {
+		e.preventDefault();
+		let newState = this.state.workExp.map((job) => {
+			if (job.id === jobID) {
+				job.jobField = changes.jobNameField;
+				job.majorField = changes.jobMajorField;
+				job.dateField = changes.jobDateField;
+				job.editing = false;
+				return job;
+			} else {
+				return job;
+			}
+		});
+		this.setState({ workExp: newState });
+	}
+
+	deleteJob(id, e) {
+		let updatedState = this.state.workExp.filter((job) => {
+			if (job.id !== id) {
+				return job;
+			}
+		});
+		this.setState({ workExp: updatedState });
+	}
+
+	// END JOB FUNCTIONS
+
 	render() {
 		let { editToggle, generalInfo, education, workExp } = this.state;
 
@@ -153,7 +220,14 @@ class App extends React.Component {
 						deleteSchool={this.deleteSchool}
 						schools={education}
 					></Education>
-					<WorkExp edit={editToggle} jobs={workExp}></WorkExp>
+					<WorkExp
+						edit={editToggle}
+						addJob={this.addJob}
+						handleJobEdit={this.handleJobEdit}
+						handleJobEditSubmit={this.handleJobEditSubmit}
+						deleteJob={this.deleteJob}
+						jobs={workExp}
+					></WorkExp>
 				</main>
 				<footer className="footer">
 					<p>
