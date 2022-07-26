@@ -94,7 +94,7 @@ class App extends React.Component {
 			currentSchool.dateField
 		);
 
-		this.setState({ workExp: newState });
+		this.setState({ education: newState });
 		console.log(this.state);
 	}
 
@@ -136,7 +136,8 @@ class App extends React.Component {
 	}
 
 	handleJobEdit(currentJob, fieldState, e) {
-		let newState = this.state.education.map((job) => {
+		console.log(this.state);
+		let newState = this.state.workExp.map((job) => {
 			if (job.id === currentJob.id) {
 				if (job.editing === false) {
 					job.editing = true;

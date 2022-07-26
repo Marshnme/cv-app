@@ -17,6 +17,7 @@ class WorkExp extends React.Component{
         
         this.toggleJobForm = this.toggleJobForm.bind(this);
         this.handleJobOnChange = this.handleJobOnChange.bind(this);
+        this.currentJobFieldState = this.currentJobFieldState.bind(this);
     }
 
      toggleJobForm() {
@@ -56,12 +57,12 @@ class WorkExp extends React.Component{
                         return (
                             edit ?
                                 job.editing ? 
-                                    <form>
+                                    <form onSubmit={handleJobEditSubmit}>
                                         <input></input>
                                         <input></input>
                                         <input></input>
                                         <input></input>
-
+                                        <button>Apply</button>
                                     </form>
                                     :
                                 <div className='job'>
