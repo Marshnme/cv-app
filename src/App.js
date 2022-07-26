@@ -18,6 +18,8 @@ class App extends React.Component {
 			},
 			education: [],
 			workExp: [],
+			schoolEditToggle: false,
+			jobEditToggle: false,
 		};
 		this.handleEditToggle = this.handleEditToggle.bind(this);
 		this.handleNameSubmit = this.handleNameSubmit.bind(this);
@@ -70,32 +72,36 @@ class App extends React.Component {
 		this.setState({
 			education: [...this.state.education, newSchool],
 		});
-		console.log(newSchool);
+
 		formToggle();
 	}
 
 	handleSchoolEdit(currentSchool, fieldState, e) {
-		let newState = this.state.education.map((school) => {
-			if (school.id === currentSchool.id) {
-				if (school.editing === false) {
-					school.editing = true;
+		if (this.state.schoolEditToggle === true) {
+			return;
+		} else if (this.state.schoolEditToggle === false) {
+			this.setState({ schoolEditToggle: true });
+			let newState = this.state.education.map((school) => {
+				if (school.id === currentSchool.id) {
+					if (school.editing === false) {
+						school.editing = true;
+					} else {
+						school.editing = false;
+					}
+					return school;
 				} else {
-					school.editing = false;
+					return school;
 				}
-				return school;
-			} else {
-				return school;
-			}
-		});
+			});
 
-		fieldState(
-			currentSchool.schoolField,
-			currentSchool.majorField,
-			currentSchool.dateField
-		);
+			fieldState(
+				currentSchool.schoolField,
+				currentSchool.majorField,
+				currentSchool.dateField
+			);
 
-		this.setState({ education: newState });
-		console.log(this.state);
+			this.setState({ education: newState });
+		}
 	}
 
 	handleSchoolEditSubmit(schoolID, changes, e) {
@@ -105,6 +111,7 @@ class App extends React.Component {
 				school.schoolField = changes.schoolNameField;
 				school.majorField = changes.schoolMajorField;
 				school.dateField = changes.schoolDateField;
+				this.setState({ schoolEditToggle: false });
 				school.editing = false;
 				return school;
 			} else {
@@ -127,7 +134,6 @@ class App extends React.Component {
 	// JOB FUNCTIONS
 
 	addJob(formToggle, newJob, e) {
-		console.log('NEWWW', newJob);
 		e.preventDefault();
 		this.setState({
 			workExp: [...this.state.workExp, newJob],
@@ -136,29 +142,34 @@ class App extends React.Component {
 	}
 
 	handleJobEdit(currentJob, fieldState, e) {
-		console.log(this.state);
-		let newState = this.state.workExp.map((job) => {
-			if (job.id === currentJob.id) {
-				if (job.editing === false) {
-					job.editing = true;
+		if (this.state.jobEditToggle === true) {
+			return;
+		} else if (this.state.jobEditToggle === false) {
+			this.setState({ jobEditToggle: true });
+
+			let newState = this.state.workExp.map((job) => {
+				if (job.id === currentJob.id) {
+					if (job.editing === false) {
+						job.editing = true;
+					} else {
+						job.editing = false;
+					}
+					return job;
 				} else {
-					job.editing = false;
+					return job;
 				}
-				return job;
-			} else {
-				return job;
-			}
-		});
+			});
 
-		fieldState(
-			currentJob.companyField,
-			currentJob.roleField,
-			currentJob.dutiesField,
-			currentJob.dateField
-		);
+			fieldState(
+				currentJob.companyField,
+				currentJob.roleField,
+				currentJob.dutiesField,
+				currentJob.dateField
+			);
 
-		this.setState({ workExp: newState });
-		console.log(this.state);
+			this.setState({ workExp: newState });
+			console.log(this.state);
+		}
 	}
 
 	handleJobEditSubmit(jobID, changes, e) {
@@ -169,6 +180,7 @@ class App extends React.Component {
 				job.roleField = changes.roleField;
 				job.dutiesField = changes.dutiesField;
 				job.dateField = changes.dateField;
+				this.setState({ jobEditToggle: false });
 				job.editing = false;
 				return job;
 			} else {

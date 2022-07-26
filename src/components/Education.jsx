@@ -56,8 +56,7 @@ class Education extends React.Component{
                     
                     {educationFormToggle ? <EducationForm addSchool={addSchool} formToggle={this.toggleEducationForm}></EducationForm> : null}
                 </div>
-                
-                {console.log(schools)}
+            
                 <div className="schools">
                     {schools.map((school) => {
                         return (edit ?

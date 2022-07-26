@@ -42,7 +42,8 @@ class WorkExp extends React.Component{
 
     render() {
         let {companyField,roleField,dutiesField,dateField} = this.state
-        let {edit,addJob,handleJobEdit,handleJobEditSubmit,deleteJob, jobs} = this.props
+        let { edit, addJob, handleJobEdit, handleJobEditSubmit, deleteJob, jobs } = this.props;
+        
         return (
             <div className='work-exp-container'>
                 <div className="job-section-title">

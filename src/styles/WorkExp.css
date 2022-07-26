@@ -29,6 +29,10 @@
     margin-left: 2rem;
 }
 
+.job{
+    padding:0 1.5rem;
+}
+
 .job-form-container {
     position: absolute;
     border: 1px solid black;
