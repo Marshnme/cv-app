@@ -150,8 +150,9 @@ class App extends React.Component {
 		});
 
 		fieldState(
-			currentJob.jobField,
-			currentJob.majorField,
+			currentJob.companyField,
+			currentJob.roleField,
+			currentJob.dutiesField,
 			currentJob.dateField
 		);
 
