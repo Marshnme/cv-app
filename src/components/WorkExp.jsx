@@ -59,15 +59,19 @@ class WorkExp extends React.Component{
                         return (
                             edit ?
                                 job.editing ? 
-                                    <form onSubmit={handleJobEditSubmit.bind(this,job.id,this.state)}>
-                                        <input id='company' value={companyField} onChange={this.handleJobOnChange}></input>
-                                        <input id='role' value={roleField} onChange={this.handleJobOnChange}></input>
-                                        <input id='duties' value={dutiesField} onChange={this.handleJobOnChange}></input>
-                                        <input id='date' value={dateField} onChange={this.handleJobOnChange}></input>
+                                    <form className='job-edit-form' onSubmit={handleJobEditSubmit.bind(this, job.id, this.state)}>
+                                        <label htmlFor='company'>Company</label>
+                                        <input required type='text' id='company' name='company' value={companyField} onChange={this.handleJobOnChange}></input>
+                                        <label htmlFor='role'>role</label>
+                                        <input required type='text' id='role' name='role' value={roleField} onChange={this.handleJobOnChange}></input>
+                                        <label htmlFor='duties'>duties</label>
+                                        <input required type='text' id='duties' name='duties' value={dutiesField} onChange={this.handleJobOnChange}></input>
+                                        <label htmlFor='date'>date</label>
+                                        <input required type='text' id='date' name='date' value={dateField} onChange={this.handleJobOnChange}></input>
                                         <button>Apply</button>
                                     </form>
                                     :
-                                <div className='job' id={job.id}>
+                                <div className='job' key={job.id}>
                                     <p>{job.companyField}
                                         <EditIcon className='cursor-pointer' onClick={handleJobEdit.bind(this, job, this.currentJobFieldState.bind(job))}></EditIcon>
                                         <span className='cursor-pointer' onClick={deleteJob.bind(this, job.id)}>X</span>
@@ -77,7 +81,7 @@ class WorkExp extends React.Component{
                                     <p>{job.dateField}</p>
                                 </div>
                                 :
-                                <div className='job' id={job.id}>
+                                <div className='job' key={job.id}>
                                     <p>{job.companyField}</p>
                                     <p>{job.roleField}</p>
                                     <p>{job.dutiesField}</p>

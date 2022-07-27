@@ -62,14 +62,18 @@ class Education extends React.Component{
                         return (edit ?
                             school.editing ?
                                 
-                                <form onSubmit={handleSchoolEditSubmit.bind(this,school.id,this.state)}>
-                                    <input type='text' id='school-name' onChange={ this.handleSchoolOnChange } value={schoolNameField}></input>
-                                    <input type='text' id='major' onChange={ this.handleSchoolOnChange } value={schoolMajorField}></input>
-                                    <input type='text' id='date' onChange={this.handleSchoolOnChange} value={schoolDateField}></input>
+                                <form onSubmit={handleSchoolEditSubmit.bind(this, school.id, this.state)}>
+                                    <label htmlFor="school-name">School Name</label>
+                                    <input required type='text' id='school-name' name='school-name' onChange={this.handleSchoolOnChange} value={schoolNameField}></input>
+                                    <label htmlFor="major">Major</label>
+                                    <input required type='text' id='major' name='major' onChange={this.handleSchoolOnChange} value={schoolMajorField}></input>
+                                    <label htmlFor="date">Date</label>
+                                    <input required type='text' id='date'
+                                    name='date' onChange={this.handleSchoolOnChange} value={schoolDateField}></input>
                                     <button>Apply</button>
                                 </form>
                                 :
-                                <div className='school' id={school.id}>
+                                <div className='school' key={school.id}>
                                     <p>{school.schoolField}
                                         <EditIcon className='cursor-pointer' onClick={handleSchoolEdit.bind(this, school, this.currentSchoolFieldState.bind(school))}></EditIcon>
                                         <span className='cursor-pointer' onClick={deleteSchool.bind(this, school.id)}>X</span>
@@ -77,7 +81,7 @@ class Education extends React.Component{
                                     <p>{school.majorField}</p><p>{school.dateField}</p> 
                                 </div> 
                              :
-                            <div className='school' id={school.id}><p>{school.schoolField}</p><p>{school.majorField}</p><p>{school.dateField}</p></div>
+                            <div className='school' key={school.id}><p>{school.schoolField}</p><p>{school.majorField}</p><p>{school.dateField}</p></div>
                             
                        )
                     })}
