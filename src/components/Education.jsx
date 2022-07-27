@@ -60,7 +60,7 @@ class Education extends React.Component{
                 </div>
             
                 <div className="schools">
-                    {schools.length < 1 ? <div className='add-schools-box'><p>Add Schools...</p></div> : schools.map((school) => {
+                    {schools.length < 1 ? <div className='add-schools-box cursor-pointer' onClick={this.toggleEducationForm}><p>Add Schools...</p></div> : schools.map((school) => {
                         return (edit ?
                             school.editing ?
                                 

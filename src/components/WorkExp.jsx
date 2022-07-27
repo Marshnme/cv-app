@@ -58,7 +58,7 @@ class WorkExp extends React.Component{
 
                 <div className="jobs">
                     {console.log(jobs.length)}
-                    {jobs.length < 1 ? <div className='add-jobs-box'><p>Add Jobs...</p></div> : jobs.map((job) => {
+                    {jobs.length < 1 ? <div className='add-jobs-box cursor-pointer' onClick={this.toggleJobForm}><p>Add Jobs...</p></div> : jobs.map((job) => {
                         return (
                             edit ?
                                 job.editing ? 
