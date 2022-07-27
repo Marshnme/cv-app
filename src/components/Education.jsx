@@ -1,5 +1,6 @@
 import React from 'react';
 import EducationForm from './EducationForm';
+import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../styles/Education.css'
@@ -53,13 +54,13 @@ class Education extends React.Component{
             <div className='education-container'>
                 <div className="school-section-title">
                     <h4>Education</h4>
-                    {edit ? <p onClick={this.toggleEducationForm}>+</p> : null}
+                    {edit ? <AddIcon className='cursor-pointer' onClick={this.toggleEducationForm}>+</AddIcon> : null}
                     
                     {educationFormToggle ? <EducationForm addSchool={addSchool} formToggle={this.toggleEducationForm}></EducationForm> : null}
                 </div>
             
                 <div className="schools">
-                    {schools.map((school) => {
+                    {schools.length < 1 ? <div className='add-schools-box'><p>Add Schools...</p></div> : schools.map((school) => {
                         return (edit ?
                             school.editing ?
                                 
@@ -86,6 +87,7 @@ class Education extends React.Component{
                             
                        )
                     })}
+                    
                 </div>
             </div>
         )

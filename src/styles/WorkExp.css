@@ -45,6 +45,14 @@
 
 }
 
+.add-jobs-box{
+    font-size: .9rem;
+    border:1px solid grey;
+    background-color: lightgrey;
+    margin-top:1rem;
+    padding:.1rem 1rem;
+}
+
 .job-edit-form{
     display:flex;
     flex-flow: column nowrap;

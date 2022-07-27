@@ -1,5 +1,6 @@
 import React from 'react';
 import WorkExpForm from './WorkExpForm'
+import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../styles/WorkExp.css'
@@ -49,14 +50,15 @@ class WorkExp extends React.Component{
             <div className='work-exp-container'>
                 <div className="job-section-title">
                     <h4>Work Experience</h4>
-                    {edit ?  <p onClick={this.toggleJobForm}>+</p> : null}
+                    {edit ?  <AddIcon className='cursor-pointer'  onClick={this.toggleJobForm}>+</AddIcon> : null}
                      {this.state.jobFormToggle ? <WorkExpForm addJob={addJob} toggleForm={this.toggleJobForm}></WorkExpForm> : null}
                 </div>
 
 
 
                 <div className="jobs">
-                    {jobs.map((job) => {
+                    {console.log(jobs.length)}
+                    {jobs.length < 1 ? <div className='add-jobs-box'><p>Add Jobs...</p></div> : jobs.map((job) => {
                         return (
                             edit ?
                                 job.editing ? 
@@ -90,7 +92,8 @@ class WorkExp extends React.Component{
                                 </div>
                 
                         )
-                    })}
+                    }) }
+                    
                 </div>
             </div>
         )

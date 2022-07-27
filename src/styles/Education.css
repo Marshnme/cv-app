@@ -52,6 +52,15 @@
     flex-flow: column nowrap;
 
 }
+
+.add-schools-box{
+    font-size: .9rem;
+        border: 1px solid grey;
+        background-color: lightgrey;
+        margin-top: 1rem;
+        padding: .1rem 1rem;
+}
+
 .label-space {
     margin-top: 1rem;
     margin-bottom: .2rem;
