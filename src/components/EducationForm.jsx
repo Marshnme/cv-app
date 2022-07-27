@@ -33,11 +33,11 @@ class EducationForm extends React.Component{
             <div className='education-form-container'>
                 <form className='education-form' onSubmit={addSchool.bind(this,formToggle,this.state)}>
                     <label htmlFor="school">School</label>
-                    <input type="text" id='school' name="school" onChange={this.handleChange} value={schoolField} />
+                    <input required type="text" id='school' name="school" onChange={this.handleChange} value={schoolField} />
                     <label htmlFor="major">major</label>
-                    <input type="text" id='major' name="major" onChange={this.handleChange} value={majorField} />
+                    <input required type="text" id='major' name="major" onChange={this.handleChange} value={majorField} />
                     <label htmlFor="date">date</label>
-                    <input type="text" id='date' name="date" onChange={this.handleChange} value={dateField} />
+                    <input required type="text" id='date' name="date" onChange={this.handleChange} value={dateField} />
                     <button type='submit'>Add School</button>
                 </form>
             </div>

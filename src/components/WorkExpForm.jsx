@@ -37,13 +37,13 @@ class WorkExpForm extends React.Component{
             <div className='job-form-container'>
                 <form className='job-form' onSubmit={addJob.bind(this,toggleForm,this.state)}>
                     <label htmlFor="company">company</label>
-                    <input onChange={this.handleChange }type="text" id='company' name="company" value={companyField} />
+                    <input required onChange={this.handleChange }type="text" id='company' name="company" value={companyField} />
                     <label htmlFor="role">role</label>
-                    <input onChange={this.handleChange } type="text" id='role' name="role" value={roleField} />
+                    <input required onChange={this.handleChange } type="text" id='role' name="role" value={roleField} />
                     <label htmlFor="duties">duties</label>
-                    <input onChange={this.handleChange } type="text" id='duties' name="duties" value={dutiesField} />
+                    <input required onChange={this.handleChange } type="text" id='duties' name="duties" value={dutiesField} />
                     <label htmlFor="date">date</label>
-                    <input onChange={this.handleChange } type="text" id='date' name="date" value={dateField} />
+                    <input required onChange={this.handleChange } type="text" id='date' name="date" value={dateField} />
                     <button type='submit'>Add Job</button>
                 </form>
             </div>
