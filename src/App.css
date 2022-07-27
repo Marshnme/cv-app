@@ -28,7 +28,7 @@ header h1{
 
 .main{
   border:1px solid black;
-  width: 80%;
+  width: 90%;
   margin:0 auto;
   grid-area: main;
 }
