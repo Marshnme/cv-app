@@ -74,6 +74,10 @@
     
 }
 
+.close-icon{
+    align-self:flex-end
+}
+
 .education-form > input {
     margin-top:.2rem;
     margin-bottom: 1rem;

@@ -1,5 +1,6 @@
 import React from 'react'
 import uniqid from 'uniqid';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 class WorkExpForm extends React.Component{
@@ -35,7 +36,8 @@ class WorkExpForm extends React.Component{
         let { addJob, toggleForm } = this.props;
         return (
             <div className='job-form-container'>
-                <form className='job-form' onSubmit={addJob.bind(this,toggleForm,this.state)}>
+                <form className='job-form' onSubmit={addJob.bind(this, toggleForm, this.state)}>
+                    <CloseIcon className=' close-icon cursor-pointer' onClick={toggleForm}></CloseIcon>
                     <label htmlFor="company">company</label>
                     <input required onChange={this.handleChange }type="text" id='company' name="company" value={companyField} />
                     <label htmlFor="role">role</label>

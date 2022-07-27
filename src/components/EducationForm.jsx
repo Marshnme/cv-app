@@ -1,5 +1,6 @@
 import React from 'react'
 import uniqid from 'uniqid';
+import CloseIcon from '@mui/icons-material/Close';
 import '../styles/Education.css'
 
 class EducationForm extends React.Component{
@@ -31,7 +32,8 @@ class EducationForm extends React.Component{
         let {addSchool,formToggle} = this.props
         return (
             <div className='education-form-container'>
-                <form className='education-form' onSubmit={addSchool.bind(this,formToggle,this.state)}>
+                <form className='education-form' onSubmit={addSchool.bind(this, formToggle, this.state)}>
+                    <CloseIcon className='close-icon cursor-pointer' onClick={formToggle}></CloseIcon>
                     <label htmlFor="school">School</label>
                     <input required type="text" id='school' name="school" onChange={this.handleChange} value={schoolField} />
                     <label htmlFor="major">major</label>
