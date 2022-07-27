@@ -47,6 +47,17 @@
     
 }
 
+.school-edit-form{
+    display:flex;
+    flex-flow: column nowrap;
+
+}
+.label-space {
+    margin-top: 1rem;
+    margin-bottom: .2rem;
+}
+
+
 .education-form{
     display:flex;
     flex-flow: column nowrap;

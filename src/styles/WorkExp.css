@@ -3,6 +3,7 @@
     flex-flow: column nowrap;
     align-items: flex-start;
     margin: 0 2rem;
+    padding-bottom:1rem;
 }
 
 .job-section-title {
@@ -42,6 +43,23 @@
     left: 55%;
     transform: translate(-50%, -50%);
 
+}
+
+.job-edit-form{
+    display:flex;
+    flex-flow: column nowrap;
+}
+
+.label-space{
+    margin-top: 1rem;
+    margin-bottom:.2rem;
+}
+
+.edit-apply{
+    align-self: center;
+    width:50%;
+    margin-top:.5rem;
+    padding:.5rem .1rem;
 }
 
 .job-form {

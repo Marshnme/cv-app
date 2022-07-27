@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkExpForm from './WorkExpForm'
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import '../styles/WorkExp.css'
 
 class WorkExp extends React.Component{
@@ -60,21 +61,21 @@ class WorkExp extends React.Component{
                             edit ?
                                 job.editing ? 
                                     <form className='job-edit-form' onSubmit={handleJobEditSubmit.bind(this, job.id, this.state)}>
-                                        <label htmlFor='company'>Company</label>
+                                        <label className='label-space' htmlFor='company'>Company</label>
                                         <input required type='text' id='company' name='company' value={companyField} onChange={this.handleJobOnChange}></input>
-                                        <label htmlFor='role'>role</label>
+                                        <label className='label-space' htmlFor='role'>role</label>
                                         <input required type='text' id='role' name='role' value={roleField} onChange={this.handleJobOnChange}></input>
-                                        <label htmlFor='duties'>duties</label>
+                                        <label className='label-space' htmlFor='duties'>duties</label>
                                         <input required type='text' id='duties' name='duties' value={dutiesField} onChange={this.handleJobOnChange}></input>
-                                        <label htmlFor='date'>date</label>
+                                        <label className='label-space' htmlFor='date'>date</label>
                                         <input required type='text' id='date' name='date' value={dateField} onChange={this.handleJobOnChange}></input>
-                                        <button>Apply</button>
+                                        <button className='edit-apply'>Apply</button>
                                     </form>
                                     :
                                 <div className='job' key={job.id}>
                                     <p>{job.companyField}
-                                        <EditIcon className='cursor-pointer' onClick={handleJobEdit.bind(this, job, this.currentJobFieldState.bind(job))}></EditIcon>
-                                        <span className='cursor-pointer' onClick={deleteJob.bind(this, job.id)}>X</span>
+                                        <EditIcon className='cursor-pointer' fontSize='small'  onClick={handleJobEdit.bind(this, job, this.currentJobFieldState.bind(job))}></EditIcon>
+                                        <DeleteIcon className='cursor-pointer' fontSize='small'  onClick={deleteJob.bind(this, job.id)}>X</DeleteIcon>
                                     </p>
                                     <p>{job.roleField}</p>
                                     <p>{job.dutiesField}</p>

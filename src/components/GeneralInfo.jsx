@@ -58,7 +58,7 @@ class GeneralInfo extends React.Component{
                 <div className="name">
                     <form  onSubmit={handleNameSubmit.bind(this,nameField,this.handleNameEdit)}>
                         {edit ? editName ? <><input type='text' onChange={this.handleNameChange} value={nameField}></input> <button type='submit'>Apply</button></> : <h3>{info.userName}
-                            <EditIcon className='cursor-pointer' onClick={this.handleNameEdit}></EditIcon></h3> : <h3>{info.userName}</h3>}
+                            <EditIcon className='cursor-pointer' fontSize='small' onClick={this.handleNameEdit}></EditIcon></h3> : <h3>{info.userName}</h3>}
                     </form>
                 </div>
                 <div className="contact-info">
@@ -74,7 +74,7 @@ class GeneralInfo extends React.Component{
                         :
                             
                         <>
-                            <p>{info.email}<EditIcon className='cursor-pointer' onClick={this.handleContactEdit}></EditIcon></p>
+                            <p>{info.email}<EditIcon className='cursor-pointer' fontSize='small' onClick={this.handleContactEdit}></EditIcon></p>
                             <p>{info.phone}</p>
                             <p>{info.website}</p>
                         </> :

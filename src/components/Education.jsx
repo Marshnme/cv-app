@@ -1,6 +1,7 @@
 import React from 'react';
 import EducationForm from './EducationForm';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import '../styles/Education.css'
 
 class Education extends React.Component{
@@ -62,21 +63,21 @@ class Education extends React.Component{
                         return (edit ?
                             school.editing ?
                                 
-                                <form onSubmit={handleSchoolEditSubmit.bind(this, school.id, this.state)}>
-                                    <label htmlFor="school-name">School Name</label>
+                                <form className='school-edit-form' onSubmit={handleSchoolEditSubmit.bind(this, school.id, this.state)}>
+                                    <label className='label-space' htmlFor="school-name">School Name</label>
                                     <input required type='text' id='school-name' name='school-name' onChange={this.handleSchoolOnChange} value={schoolNameField}></input>
-                                    <label htmlFor="major">Major</label>
+                                    <label className='label-space' htmlFor="major">Major</label>
                                     <input required type='text' id='major' name='major' onChange={this.handleSchoolOnChange} value={schoolMajorField}></input>
-                                    <label htmlFor="date">Date</label>
+                                    <label className='label-space' htmlFor="date">Date</label>
                                     <input required type='text' id='date'
                                     name='date' onChange={this.handleSchoolOnChange} value={schoolDateField}></input>
-                                    <button>Apply</button>
+                                    <button className='edit-apply'>Apply</button>
                                 </form>
                                 :
                                 <div className='school' key={school.id}>
                                     <p>{school.schoolField}
-                                        <EditIcon className='cursor-pointer' onClick={handleSchoolEdit.bind(this, school, this.currentSchoolFieldState.bind(school))}></EditIcon>
-                                        <span className='cursor-pointer' onClick={deleteSchool.bind(this, school.id)}>X</span>
+                                        <EditIcon  className='cursor-pointer'  fontSize='small' onClick={handleSchoolEdit.bind(this, school, this.currentSchoolFieldState.bind(school))}></EditIcon>
+                                        <DeleteIcon className='cursor-pointer' fontSize='small' onClick={deleteSchool.bind(this, school.id)}>X</DeleteIcon>
                                     </p>
                                     <p>{school.majorField}</p><p>{school.dateField}</p> 
                                 </div> 
