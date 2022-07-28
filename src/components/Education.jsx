@@ -1,84 +1,84 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import EducationForm from './EducationForm';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../styles/Education.css'
 
-class Education extends React.Component{
-    constructor(props) {
-        super(props)
+const Education = (props) => {
+    const [educationState, setEducationState] = useState({
+        schoolNameField: '',
+        schoolMajorField: '',
+        schoolDateField: '',
+        educationFormToggle:false
+    })
 
-        this.state = {
-            educationFormToggle: false,
-            schoolNameField: '',
-            schoolMajorField: '',
-            schoolDateField:''
-
-        }
-        
-        this.toggleEducationForm = this.toggleEducationForm.bind(this);
-        this.currentSchoolFieldState = this.currentSchoolFieldState.bind(this);
-        this.handleSchoolOnChange = this.handleSchoolOnChange.bind(this);
-        
-
-    }
+    console.log('educationProps',props)
     
    
 
-    toggleEducationForm() {
-       this.state.educationFormToggle ? this.setState({educationFormToggle:false}) : this.setState({educationFormToggle:true})
+    function toggleEducationForm() {
+        educationState.educationFormToggle ? setEducationState((prevState) => ({
+        ...prevState,educationFormToggle:false})) : setEducationState((prevState) => ({
+        ...prevState,educationFormToggle:true}))
+    
     }
 
-    currentSchoolFieldState(school, major, date) {
-        this.setState({...this.state,schoolNameField:school,schoolMajorField: major, schoolDateField:date})
+    function currentSchoolFieldState(school, major, date) {
+        setEducationState((prevState) => ({
+            ...prevState, schoolNameField: school, schoolMajorField: major, schoolDateField: date
+        }))
     }
 
-    handleSchoolOnChange(e) {
+    function handleSchoolOnChange(e) {
         if (e.target.id === 'school-name') {
-            this.setState({...this.state,schoolNameField:e.target.value})
+            setEducationState((prevState) => ({
+            ...prevState, schoolNameField: e.target.value
+        }))
         } else if (e.target.id === 'major') {
-            this.setState({...this.state,schoolMajorField:e.target.value})
+             setEducationState((prevState) => ({
+            ...prevState, schoolMajorField: e.target.value
+        }))
         } else if (e.target.id === 'date') {
-            this.setState({...this.state,schoolDateField:e.target.value})
+             setEducationState((prevState) => ({
+            ...prevState, schoolDateField: e.target.value
+        }))
         }
     }
 
     
     
 
-    render() {
-        let {educationFormToggle,schoolNameField,schoolMajorField,schoolDateField} = this.state
-        let {edit,addSchool,handleSchoolEdit,handleSchoolEditSubmit,deleteSchool,schools} = this.props
+    
         return (
             <div className='education-container'>
                 <div className="school-section-title">
                     <h4>Education</h4>
-                    {edit ? <AddIcon className='cursor-pointer' onClick={this.toggleEducationForm}>+</AddIcon> : null}
+                    {props.edit ? <AddIcon className='cursor-pointer' onClick={toggleEducationForm}>+</AddIcon> : null}
                     
-                    {educationFormToggle ? <EducationForm addSchool={addSchool} formToggle={this.toggleEducationForm}></EducationForm> : null}
+                    {educationState.educationFormToggle ? <EducationForm addSchool={props.addSchool} formToggle={toggleEducationForm}></EducationForm> : null}
                 </div>
             
                 <div className="schools">
-                    {schools.length < 1 ? <div className='add-schools-box cursor-pointer' onClick={this.toggleEducationForm}><p>Add Schools...</p></div> : schools.map((school) => {
-                        return (edit ?
+                    {props.schools.length < 1 ? <div className='add-schools-box cursor-pointer' onClick={toggleEducationForm}><p>Add Schools...</p></div> : props.schools.map((school) => {
+                        return (props.edit ?
                             school.editing ?
                                 
-                                <form className='school-edit-form' onSubmit={handleSchoolEditSubmit.bind(this, school.id, this.state)}>
+                                <form className='school-edit-form' onSubmit={props.handleSchoolEditSubmit.bind(this, school.id, educationState)}>
                                     <label className='label-space' htmlFor="school-name">School Name</label>
-                                    <input required type='text' id='school-name' name='school-name' onChange={this.handleSchoolOnChange} value={schoolNameField}></input>
+                                    <input required type='text' id='school-name' name='school-name' onChange={handleSchoolOnChange} value={educationState.schoolNameField}></input>
                                     <label className='label-space' htmlFor="major">Major</label>
-                                    <input required type='text' id='major' name='major' onChange={this.handleSchoolOnChange} value={schoolMajorField}></input>
+                                    <input required type='text' id='major' name='major' onChange={handleSchoolOnChange} value={educationState.schoolMajorField}></input>
                                     <label className='label-space' htmlFor="date">Date</label>
                                     <input required type='text' id='date'
-                                    name='date' onChange={this.handleSchoolOnChange} value={schoolDateField}></input>
+                                    name='date' onChange={handleSchoolOnChange} value={educationState.schoolDateField}></input>
                                     <button className='edit-apply'>Apply</button>
                                 </form>
                                 :
                                 <div className='school' key={school.id}>
                                     <p>{school.schoolField}
-                                        <EditIcon  className='cursor-pointer'  fontSize='small' onClick={handleSchoolEdit.bind(this, school, this.currentSchoolFieldState.bind(school))}></EditIcon>
-                                        <DeleteIcon className='cursor-pointer' fontSize='small' onClick={deleteSchool.bind(this, school.id)}>X</DeleteIcon>
+                                        <EditIcon  className='cursor-pointer'  fontSize='small' onClick={props.handleSchoolEdit.bind(this, school, currentSchoolFieldState.bind(school))}></EditIcon>
+                                        <DeleteIcon className='cursor-pointer' fontSize='small' onClick={props.deleteSchool.bind(this, school.id)}>X</DeleteIcon>
                                     </p>
                                     <p>{school.majorField}</p><p>{school.dateField}</p> 
                                 </div> 
@@ -91,7 +91,6 @@ class Education extends React.Component{
                 </div>
             </div>
         )
-    }
 }
 
 export default Education

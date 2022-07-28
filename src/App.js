@@ -53,10 +53,7 @@ const App = () => {
 
 	const addSchool = (formToggle, newSchool, e) => {
 		e.preventDefault();
-		this.setState({
-			education: [...this.state.education, newSchool],
-		});
-
+		setEducation((prevState) => [...prevState, newSchool]);
 		formToggle();
 	};
 
@@ -64,7 +61,7 @@ const App = () => {
 		if (schoolEditToggle === true) {
 			return;
 		} else if (schoolEditToggle === false) {
-			this.setState({ schoolEditToggle: true });
+			setSchoolEditToggle(true);
 			let newState = education.map((school) => {
 				if (school.id === currentSchool.id) {
 					if (school.editing === false) {
@@ -83,8 +80,7 @@ const App = () => {
 				currentSchool.majorField,
 				currentSchool.dateField
 			);
-
-			this.setState({ education: newState });
+			setEducation(newState);
 		}
 	};
 
@@ -119,9 +115,10 @@ const App = () => {
 
 	function addJob(formToggle, newJob, e) {
 		e.preventDefault();
-		this.setState({
-			workExp: [...this.state.workExp, newJob],
-		});
+		setWorkExp((prevState) => ({
+			...prevState,
+			newJob,
+		}));
 		formToggle();
 	}
 
@@ -129,8 +126,7 @@ const App = () => {
 		if (jobEditToggle === true) {
 			return;
 		} else if (jobEditToggle === false) {
-			this.setState({ jobEditToggle: true });
-
+			setJobEditToggle(true);
 			let newState = workExp.map((job) => {
 				if (job.id === currentJob.id) {
 					if (job.editing === false) {

@@ -39,9 +39,6 @@ const GeneralInfo = (props) => {
     }
 
    
-    
-
-    
         return (
             <div className='general-info-container'>
                 <div className="name">
