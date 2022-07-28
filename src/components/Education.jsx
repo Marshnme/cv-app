@@ -13,7 +13,6 @@ const Education = (props) => {
         educationFormToggle:false
     })
 
-    console.log('educationProps',props)
     
    
 

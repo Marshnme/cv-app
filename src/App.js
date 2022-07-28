@@ -115,10 +115,7 @@ const App = () => {
 
 	function addJob(formToggle, newJob, e) {
 		e.preventDefault();
-		setWorkExp((prevState) => ({
-			...prevState,
-			newJob,
-		}));
+		setWorkExp((prevState) => [...prevState, newJob]);
 		formToggle();
 	}
 
