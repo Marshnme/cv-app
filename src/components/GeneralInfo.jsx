@@ -38,7 +38,7 @@ const GeneralInfo = (props) => {
         }
     }
 
-   
+   console.log(props.info.website)
         return (
             <div className='general-info-container'>
                 <div className="name">
@@ -62,12 +62,12 @@ const GeneralInfo = (props) => {
                         <>
                             <p>{props.info.email}<EditIcon className='cursor-pointer' fontSize='small' onClick={handleContactEdit}></EditIcon></p>
                             <p>{props.info.phone}</p>
-                            <p>{props.info.website}</p>
+                            <a  href={'https://' + props.info.website} target='_blank' rel='noreferrer'>{props.info.website}</a>
                         </> :
                         <>
                             <p>{props.info.email}</p>
                             <p>{props.info.phone}</p>
-                            <p>{props.info.website}</p>
+                            <a  href={'https://' + props.info.website} target='_blank' rel='noreferrer'>{props.info.website}</a>
                         </>}
                 </div>
             </div>
