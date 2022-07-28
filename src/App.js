@@ -1,87 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GeneralInfo from './components/GeneralInfo';
 import Education from './components/Education';
 import WorkExp from './components/WorkExp';
 import './App.css';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+const App = () => {
+	const [editToggle, setEditToggle] = useState(false);
+	const [generalInfo, setGeneralInfo] = useState({
+		userName: 'John Doe',
+		email: 'email@email.com',
+		phone: '111-111-1111',
+		website: 'your-website.com',
+	});
+	const [education, setEducation] = useState([]);
+	const [workExp, setWorkExp] = useState([]);
+	const [schoolEditToggle, setSchoolEditToggle] = useState(false);
+	const [jobEditToggle, setJobEditToggle] = useState(false);
 
-		this.state = {
-			editToggle: false,
-			generalInfo: {
-				userName: 'John Doe',
-				email: 'email@email.com',
-				phone: '111-111-1111',
-				website: 'your-website.com',
-			},
-			education: [],
-			workExp: [],
-			schoolEditToggle: false,
-			jobEditToggle: false,
-		};
-		this.handleEditToggle = this.handleEditToggle.bind(this);
-		this.handleNameSubmit = this.handleNameSubmit.bind(this);
-		this.handleContactSubmit = this.handleContactSubmit.bind(this);
-
-		this.addSchool = this.addSchool.bind(this);
-		this.handleSchoolEdit = this.handleSchoolEdit.bind(this);
-		this.handleSchoolEditSubmit = this.handleSchoolEditSubmit.bind(this);
-		this.deleteSchool = this.deleteSchool.bind(this);
-
-		this.addJob = this.addJob.bind(this);
-		this.handleJobEdit = this.handleJobEdit.bind(this);
-		this.handleJobEditSubmit = this.handleJobEditSubmit.bind(this);
-		this.deleteJob = this.deleteJob.bind(this);
-	}
-
-	handleEditToggle() {
-		this.state.editToggle
-			? this.setState({ editToggle: false })
-			: this.setState({ editToggle: true });
-	}
+	const handleEditToggle = () => {
+		editToggle ? setEditToggle(false) : setEditToggle(true);
+	};
 
 	// GENERAL INFO FUNCTIONS
-	handleNameSubmit(nameField, handleEdit, e) {
+	const handleNameSubmit = (nameField, handleEdit, e) => {
 		e.preventDefault();
-		this.setState({
-			generalInfo: { ...this.state.generalInfo, userName: nameField },
-		});
+		setGeneralInfo((prevState) => ({
+			...prevState,
+			userName: nameField,
+		}));
 		handleEdit();
-	}
+	};
 
-	handleContactSubmit(newEmail, newPhone, newWebsite, contactEdit, e) {
+	const handleContactSubmit = (
+		newEmail,
+		newPhone,
+		newWebsite,
+		contactEdit,
+		e
+	) => {
 		e.preventDefault();
-		this.setState({
-			generalInfo: {
-				...this.state.generalInfo,
-				email: newEmail,
-				phone: newPhone,
-				website: newWebsite,
-			},
-		});
+		setGeneralInfo((prevState) => ({
+			...prevState,
+			email: newEmail,
+			phone: newPhone,
+			website: newWebsite,
+		}));
 		contactEdit();
-	}
+	};
 	// END GENERAL INFO
 
 	// EDUCATION FUNCTIONS
 
-	addSchool(formToggle, newSchool, e) {
+	const addSchool = (formToggle, newSchool, e) => {
 		e.preventDefault();
-		this.setState({
-			education: [...this.state.education, newSchool],
-		});
-
+		setEducation((prevState) => [...prevState, newSchool]);
 		formToggle();
-	}
+	};
 
-	handleSchoolEdit(currentSchool, fieldState, e) {
-		if (this.state.schoolEditToggle === true) {
+	const handleSchoolEdit = (currentSchool, fieldState, e) => {
+		if (schoolEditToggle === true) {
 			return;
-		} else if (this.state.schoolEditToggle === false) {
-			this.setState({ schoolEditToggle: true });
-			let newState = this.state.education.map((school) => {
+		} else if (schoolEditToggle === false) {
+			setSchoolEditToggle(true);
+			let newState = education.map((school) => {
 				if (school.id === currentSchool.id) {
 					if (school.editing === false) {
 						school.editing = true;
@@ -99,55 +80,51 @@ class App extends React.Component {
 				currentSchool.majorField,
 				currentSchool.dateField
 			);
-
-			this.setState({ education: newState });
+			setEducation(newState);
 		}
-	}
+	};
 
-	handleSchoolEditSubmit(schoolID, changes, e) {
+	const handleSchoolEditSubmit = (schoolID, changes, e) => {
 		e.preventDefault();
-		let newState = this.state.education.map((school) => {
+		let newState = education.map((school) => {
 			if (school.id === schoolID) {
 				school.schoolField = changes.schoolNameField;
 				school.majorField = changes.schoolMajorField;
 				school.dateField = changes.schoolDateField;
-				this.setState({ schoolEditToggle: false });
+				setSchoolEditToggle(false);
 				school.editing = false;
 				return school;
 			} else {
 				return school;
 			}
 		});
-		this.setState({ education: newState });
-	}
+		setEducation(newState);
+	};
 
-	deleteSchool(id, e) {
-		let updatedState = this.state.education.filter((school) => {
+	const deleteSchool = (id, e) => {
+		let updatedState = education.filter((school) => {
 			if (school.id !== id) {
 				return school;
 			}
 		});
-		this.setState({ education: updatedState });
-	}
+		setEducation(updatedState);
+	};
 	// END SCHOOL FUNCTIONS
 
 	// JOB FUNCTIONS
 
-	addJob(formToggle, newJob, e) {
+	function addJob(formToggle, newJob, e) {
 		e.preventDefault();
-		this.setState({
-			workExp: [...this.state.workExp, newJob],
-		});
+		setWorkExp((prevState) => [...prevState, newJob]);
 		formToggle();
 	}
 
-	handleJobEdit(currentJob, fieldState, e) {
-		if (this.state.jobEditToggle === true) {
+	function handleJobEdit(currentJob, fieldState, e) {
+		if (jobEditToggle === true) {
 			return;
-		} else if (this.state.jobEditToggle === false) {
-			this.setState({ jobEditToggle: true });
-
-			let newState = this.state.workExp.map((job) => {
+		} else if (jobEditToggle === false) {
+			setJobEditToggle(true);
+			let newState = workExp.map((job) => {
 				if (job.id === currentJob.id) {
 					if (job.editing === false) {
 						job.editing = true;
@@ -167,92 +144,88 @@ class App extends React.Component {
 				currentJob.dateField
 			);
 
-			this.setState({ workExp: newState });
+			setWorkExp(newState);
 			console.log(this.state);
 		}
 	}
 
-	handleJobEditSubmit(jobID, changes, e) {
+	function handleJobEditSubmit(jobID, changes, e) {
 		e.preventDefault();
-		let newState = this.state.workExp.map((job) => {
+		let newState = workExp.map((job) => {
 			if (job.id === jobID) {
 				job.companyField = changes.companyField;
 				job.roleField = changes.roleField;
 				job.dutiesField = changes.dutiesField;
 				job.dateField = changes.dateField;
-				this.setState({ jobEditToggle: false });
+				setJobEditToggle(false);
 				job.editing = false;
 				return job;
 			} else {
 				return job;
 			}
 		});
-		this.setState({ workExp: newState });
+
+		setWorkExp(newState);
 	}
 
-	deleteJob(id, e) {
-		let updatedState = this.state.workExp.filter((job) => {
+	function deleteJob(id, e) {
+		let updatedState = workExp.filter((job) => {
 			if (job.id !== id) {
 				return job;
 			}
 		});
-		this.setState({ workExp: updatedState });
+		setWorkExp(updatedState);
 	}
 
 	// END JOB FUNCTIONS
 
-	render() {
-		let { editToggle, generalInfo, education, workExp } = this.state;
+	return (
+		<div className="App">
+			<header className="header">
+				<h1>CV Builder</h1>
 
-		return (
-			<div className="App">
-				<header className="header">
-					<h1>CV Builder</h1>
-
-					<div className="toggle-edit-container">
-						<p>Edit?</p>
-						<label className="switch">
-							<input
-								onClick={this.handleEditToggle}
-								type="checkbox"
-							></input>
-							<span className="slider round"></span>
-						</label>
-					</div>
-				</header>
-				<main className="main">
-					<GeneralInfo
-						edit={editToggle}
-						info={generalInfo}
-						handleNameSubmit={this.handleNameSubmit}
-						handleContactSubmit={this.handleContactSubmit}
-					></GeneralInfo>
-					<Education
-						edit={editToggle}
-						addSchool={this.addSchool}
-						handleSchoolEdit={this.handleSchoolEdit}
-						handleSchoolEditSubmit={this.handleSchoolEditSubmit}
-						deleteSchool={this.deleteSchool}
-						schools={education}
-					></Education>
-					<WorkExp
-						edit={editToggle}
-						addJob={this.addJob}
-						handleJobEdit={this.handleJobEdit}
-						handleJobEditSubmit={this.handleJobEditSubmit}
-						deleteJob={this.deleteJob}
-						jobs={workExp}
-					></WorkExp>
-				</main>
-				<footer className="footer">
-					<p>
-						Created by Joshua Holtsclaw for The Odin Project
-						Curriculum
-					</p>
-				</footer>
-			</div>
-		);
-	}
-}
+				<div className="toggle-edit-container">
+					<p>Edit?</p>
+					<label className="switch">
+						<input
+							onClick={handleEditToggle}
+							type="checkbox"
+						></input>
+						<span className="slider round"></span>
+					</label>
+				</div>
+			</header>
+			<main className="main">
+				<GeneralInfo
+					edit={editToggle}
+					info={generalInfo}
+					handleNameSubmit={handleNameSubmit}
+					handleContactSubmit={handleContactSubmit}
+				></GeneralInfo>
+				<Education
+					edit={editToggle}
+					addSchool={addSchool}
+					handleSchoolEdit={handleSchoolEdit}
+					handleSchoolEditSubmit={handleSchoolEditSubmit}
+					deleteSchool={deleteSchool}
+					schools={education}
+				></Education>
+				<WorkExp
+					edit={editToggle}
+					addJob={addJob}
+					handleJobEdit={handleJobEdit}
+					handleJobEditSubmit={handleJobEditSubmit}
+					deleteJob={deleteJob}
+					jobs={workExp}
+				></WorkExp>
+			</main>
+			<footer className="footer">
+				<p>
+					Created by Joshua Holtsclaw for The Odin Project Curriculum
+				</p>
+			</footer>
+		</div>
+	);
+};
 
 export default App;
