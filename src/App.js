@@ -10,7 +10,7 @@ const App = () => {
 		userName: 'John Doe',
 		email: 'email@email.com',
 		phone: '111-111-1111',
-		website: 'your-website.com',
+		website: 'www.google.com',
 	});
 	const [education, setEducation] = useState([]);
 	const [workExp, setWorkExp] = useState([]);
